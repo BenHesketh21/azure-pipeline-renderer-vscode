@@ -27,7 +27,15 @@ export default class RenderedPipelineDocument {
 				username: '',
 				password: `${settings.devopsPatToken}`
 			}
-		}).then(response => response.data).catch(response => vscode.window.showErrorMessage(`Failed: ${response['message']}`));
+		}).then(response => response.data).catch(error => {
+			let message;
+			if (error.response.data !== '') {
+				message = `Failed: ${JSON.stringify(error.response.data)}`
+			} else {
+				message = `Failed: ${error['message']}`
+			}
+			vscode.window.showErrorMessage(message);
+		});
 		return response['finalYaml']
 	}
 }
