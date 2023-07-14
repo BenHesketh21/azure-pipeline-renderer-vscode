@@ -1,0 +1,72 @@
+{
+	"name": "azure-pipelines-renderer",
+	"displayName": "Azure Pipelines Renderer",
+	"description": "Render your Azure Pipeline templates",
+	"version": "0.0.5",
+	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "azurePipelines.render",
+				"title": "Azure Pipelines: Render Pipeline"
+			}
+		],
+		"configuration": {
+			"title": "azurePipelinesRender",
+			"properties": {
+				"azurePipelinesRender.devopsOrganisation": {
+					"type": "string",
+					"default": "",
+					"description": "The DevOps organisation that your project resides in"
+				},
+				"azurePipelinesRender.devopsProject": {
+					"type": "string",
+					"default": "",
+					"description": "The DevOps project that your pipelines reside in"
+				},
+				"azurePipelinesRender.devopsPatToken": {
+					"type": "string",
+					"default": "",
+					"description": "The PAT token used to connect to DevOps API"
+				},
+				"azurePipelinesRender.pipelineId": {
+					"type": "string",
+					"default": "1",
+					"description": "The pipeline Id that will be used to send the YAML to be rendered, must be a valid ID."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^16.18.34",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^5.42.0",
+		"@typescript-eslint/parser": "^5.42.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.1.3"
+	},
+	"dependencies": {
+		"ajax": "^0.0.4",
+		"axios": "^1.4.0"
+	}
+}
